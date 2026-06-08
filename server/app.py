@@ -37,4 +37,4 @@ if __name__ == "__main__":
     port = int(os.getenv("PORT", 5000))
     # Note: Flask's built-in print output shows the port, 
     # so we run app.run last as it blocks the thread execution while active.
-    app.run(host="0.0.0.0", port=port, debug=True)
+    app.run(host="0.0.0.0", port=port, debug=os.getenv("FLASK_ENV", "production").lower() == "development")
