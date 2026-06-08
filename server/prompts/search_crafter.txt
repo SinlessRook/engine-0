@@ -1,0 +1,4 @@
+Generate a single, precise technical interview search query targeting: "{target_topic}".
+Incorporate variations that explicitly target past student vulnerabilities if needed: "{historical_weaknesses}".
+Respond with ONLY the raw query string, no quotation marks, no explanations.
+CRITICAL FORMAT GUARDRAIL: query should not be more than 400 characters 

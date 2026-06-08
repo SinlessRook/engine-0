@@ -1,0 +1,32 @@
+# --- Environment / Secrets (CRITICAL) ---
+.env
+.env.local
+.env.*.local
+*.env
+secrets.json
+
+# --- Python Virtual Environments ---
+venv/
+.venv/
+env/
+ENV/
+pyvenv.cfg
+.Python
+
+# --- Python Compilation Caches ---
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+
+# --- Operating System Files ---
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# --- IDEs and Editors ---
+.vscode/
+.idea/
+*.swp
+*.swo
