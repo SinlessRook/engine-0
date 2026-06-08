@@ -96,6 +96,7 @@ function normalizeQuestion(question: Question): Question {
       normalized.question = question.questionText;
     }
   } else if (question.type === 'short_answer' || question.type === 'short-answer') {
+    normalized.type = 'short-answer';
     if (question.questionText && !question.question) {
       normalized.question = question.questionText;
     }
