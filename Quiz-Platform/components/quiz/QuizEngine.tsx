@@ -187,7 +187,7 @@ export function QuizEngine({ quiz, onBack }: QuizEngineProps) {
                 </h2>
                 <button
                   onClick={() => setShowExplanation(true)}
-                  className="mt-3 text-sm font-medium text-primary hover:underline transition hidden"
+                  className="mt-3 text-sm font-medium text-primary hover:underline transition"
                 >
                   Show explanation blueprint
                 </button>
