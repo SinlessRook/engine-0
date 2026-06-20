@@ -1,0 +1,32 @@
+name: Daily Quiz Notifications
+
+on:
+  schedule:
+    # 08:00 UTC
+    - cron: "0 8 * * *"
+
+    # 20:00 UTC
+    - cron: "0 20 * * *"
+
+  workflow_dispatch:
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Dependencies
+        run: pip install -r actions/requirements.txt
+
+      - name: Run Daily Quiz Script
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python actions/app.py
