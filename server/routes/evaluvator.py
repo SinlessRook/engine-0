@@ -100,14 +100,36 @@ def submit_quiz():
             improvements_log=improvements_log
         )
 
-        ai_analysis = ai_client.models.generate_content(
+        try:
+            ai_analysis = ai_client.models.generate_content(
             model=os.getenv("GEMINI_MODEL"),
             contents=evaluator_prompt,
             config={
                 "response_mime_type": "application/json",
-                "temperature": 0.2
-            }
-        )
+                "temperature": 0.2})
+        except Exception as ai_error:
+            print(f"AI evaluation service error: {ai_error}")
+            try:
+                ai_analysis = ai_client.models.generate_content(
+                    model="gemini-2.5-flash",
+                    contents=evaluator_prompt,
+                    config={
+                        "response_mime_type": "application/json",
+                        "temperature": 0.5}
+                )
+            except Exception as fallback_error:
+                print(f"Fallback AI evaluation service error: {fallback_error}")
+                try:
+                    ai_analysis = ai_client.models.generate_content(
+                        model="gemini-3.1-flash-lite",
+                        contents=evaluator_prompt,
+                        config={
+                            "response_mime_type": "application/json",
+                            "temperature": 0.5}
+                    )
+                except Exception as final_error:
+                    print(f"Final fallback AI evaluation service error: {final_error}")
+                    raise Exception("All AI evaluation attempts failed.")
 
         insights = json.loads(ai_analysis.text)
 
