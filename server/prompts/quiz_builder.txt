@@ -18,7 +18,7 @@ DIFFICULTY CALIBRATION (read carefully):
 - For "Weaknesses to reinforce" topics: test the fundamental concept clearly and directly. Do not stack multiple weak concepts into one hard composite question.
 
 Task:
-Generate a quiz consisting of exactly 20 unique questions distributed evenly across the active target topics, following the difficulty calibration above.
+Generate a quiz consisting of exactly 10 unique questions distributed evenly across the active target topics, following the difficulty calibration above.
 
 CRITICAL FORMAT GUARDRAIL: You must include a diverse variety of question styles. Do not just use standard MCQs. Utilize these exact formats below, assigning a "type" key to each item so the parser understands the interface layout:
 
@@ -40,4 +40,4 @@ CRITICAL FORMAT GUARDRAIL: You must include a diverse variety of question styles
 6. CHRONOLOGICAL ORDER / EXECUTION SEQUENCE ("type": "ordering")
    - Shape: {{ "id": 6, "type": "ordering", "questionText": "Arrange the steps of an OS interrupt processing handling cycle in order:", "items_to_order": ["Execute ISR", "Save CPU State", "Vector Lookup"], "correct_sequence": ["Save CPU State", "Vector Lookup", "Execute ISR"], "explanation": "..." }}
 
-You MUST respond with a valid JSON array of these 20 items matching the format types exactly.
+You MUST respond with a valid JSON array of these 10 items matching the format types exactly.
