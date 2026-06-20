@@ -29,4 +29,9 @@ jobs:
       - name: Run Daily Quiz Script
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          BACKEND_URL: ${{ secrets.BACKEND_URL }}
+          RESEND_RECIPIENT_EMAIL: ${{ secrets.RESEND_RECIPIENT_EMAIL }}
+          ReSEND_SENDER_EMAIL: ${{ secrets.RESEND_SENDER_EMAIL }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+
         run: python actions/app.py
