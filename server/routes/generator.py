@@ -129,6 +129,7 @@ def generate_quiz():
             contents=search_crafter_prompt
         )
         optimized_query = crafter_response.text.strip()
+        print(f"Optimized search query for research: {optimized_query}")
 
         # 6. Search Intelligence Lookup
         search_insights = "No live trends retrieved."
@@ -197,6 +198,7 @@ def generate_quiz():
                 except Exception as final_error:
                     print(f"Final fallback quiz generation error: {final_error}")
                     return jsonify({"error": "Failed to generate quiz after multiple attempts"}), 500
+        print(f"Quiz generation response: {quiz_response.text}")
         generated_quiz_array = json.loads(quiz_response.text)
 
         # Log the actual difficulty distribution that came back so drift
