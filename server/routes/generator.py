@@ -125,7 +125,7 @@ def generate_quiz():
         )
 
         crafter_response = ai_client.models.generate_content(
-            model=os.getenv("GEMINI_MODEL"),
+            model="gemini-2.5-flash-lite",
             contents=search_crafter_prompt
         )
         optimized_query = crafter_response.text.strip()
@@ -163,7 +163,8 @@ def generate_quiz():
             search_insights=search_insights
         )
 
-        quiz_response = ai_client.models.generate_content(
+        try:
+            quiz_response = ai_client.models.generate_content(
             model=os.getenv("GEMINI_MODEL"),
             contents=quiz_prompt,
             config=types.GenerateContentConfig(
@@ -171,6 +172,31 @@ def generate_quiz():
                 temperature=0.3
             )
         )
+        except Exception as quiz_error:
+            print(f"Primary quiz generation error: {quiz_error}")
+            try:
+                quiz_response = ai_client.models.generate_content(
+                    model="gemini-2.5-flash",
+                    contents=quiz_prompt,
+                    config=types.GenerateContentConfig(
+                        response_mime_type="application/json",
+                        temperature=0.5
+                    )
+                )
+            except Exception as fallback_error:
+                print(f"Fallback quiz generation error: {fallback_error}")
+                try:
+                    quiz_response = ai_client.models.generate_content(
+                        model="gemini-3.1-flash-lite",
+                        contents=quiz_prompt,
+                        config=types.GenerateContentConfig(
+                            response_mime_type="application/json",
+                            temperature=0.5
+                        )
+                    )
+                except Exception as final_error:
+                    print(f"Final fallback quiz generation error: {final_error}")
+                    return jsonify({"error": "Failed to generate quiz after multiple attempts"}), 500
         generated_quiz_array = json.loads(quiz_response.text)
 
         # Log the actual difficulty distribution that came back so drift
