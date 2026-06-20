@@ -31,7 +31,8 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           BACKEND_URL: ${{ secrets.BACKEND_URL }}
           RESEND_RECIPIENT_EMAIL: ${{ secrets.RESEND_RECIPIENT_EMAIL }}
-          ReSEND_SENDER_EMAIL: ${{ secrets.RESEND_SENDER_EMAIL }}
+          RESEND_SENDER_EMAIL: ${{ secrets.RESEND_SENDER_EMAIL }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          QUIZ_PLATFORM_URL: ${{ secrets.QUIZ_PLATFORM_URL }}
 
         run: python actions/app.py
