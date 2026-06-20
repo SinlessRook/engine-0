@@ -1,4 +1,8 @@
-Generate a single, precise technical interview search query targeting: "{target_topic}".
-Incorporate variations that explicitly target past student vulnerabilities if needed: "{historical_weaknesses}".
+Generate a single, precise search query to find commonly-asked, fundamental-level questions on: "{target_topic}".
+
+Goal: find the kind of questions that appear repeatedly in standard courses, textbooks, and entry-to-mid-level study guides — not advanced/expert interview trick questions or rare edge cases.
+
+If relevant, lightly incorporate a fundamentals-focused angle on past weak areas: "{historical_weaknesses}" — phrase it to find clear explanatory content on the basics of that weakness, not advanced gotchas.
+
 Respond with ONLY the raw query string, no quotation marks, no explanations.
-CRITICAL FORMAT GUARDRAIL: query should not be more than 400 characters 
+CRITICAL FORMAT GUARDRAIL: query should not be more than 400 characters
