@@ -87,8 +87,9 @@
 
 .masthead {
   width: 100%;
-  max-width: 46rem;
   margin-bottom: 2.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .mastheadTop {
@@ -402,4 +403,58 @@
   .card {
     padding: 1.15rem 1.1rem 1.1rem;
   }
+}
+
+.questionTabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.questionTab {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #ccc;
+  background: white;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.activeQuestionTab {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #111;
+  background: #111;
+  color: white;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+.questionContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navButton {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.navButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.questionCounter {
+  font-weight: 600;
 }

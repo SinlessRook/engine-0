@@ -21,6 +21,7 @@ const TYPE_META: Record<Question["type"], { label: string; tab: string }> = {
 
 export default function AnswerKeyPage() {
   const [state, setState] = useState<LoadState>({ status: "loading" });
+  const [currentQuestion, setCurrentQuestion] = useState(0);
 
   useEffect(() => {
     let cancelled = false;
@@ -92,6 +93,7 @@ export default function AnswerKeyPage() {
   }
 
   const { data } = state;
+  const question = data.questions[currentQuestion];
 
   return (
     <main className={styles.page}>
@@ -112,13 +114,53 @@ export default function AnswerKeyPage() {
         )}
       </header>
 
-      <ol className={styles.ledger}>
-        {data.questions.map((q) => (
-          <li key={q.id} className={styles.entry}>
-            <QuestionCard question={q} />
-          </li>
-        ))}
-      </ol>
+      <div className={styles.questionTabs}>
+  {data.questions.map((_, i) => (
+    <button
+      key={i}
+      onClick={() => setCurrentQuestion(i)}
+      className={
+        i === currentQuestion
+          ? styles.activeQuestionTab
+          : styles.questionTab
+      }
+    >
+      {i + 1}
+    </button>
+  ))}
+</div>
+
+<div className={styles.questionContainer}>
+  <QuestionCard question={question} />
+
+  <div className={styles.navigation}>
+    <button
+      className={styles.navButton}
+      disabled={currentQuestion === 0}
+      onClick={() =>
+        setCurrentQuestion((prev) => Math.max(prev - 1, 0))
+      }
+    >
+      ← Previous
+    </button>
+
+    <span className={styles.questionCounter}>
+      Question {currentQuestion + 1} of {data.questions.length}
+    </span>
+
+    <button
+      className={styles.navButton}
+      disabled={currentQuestion === data.questions.length - 1}
+      onClick={() =>
+        setCurrentQuestion((prev) =>
+          Math.min(prev + 1, data.questions.length - 1)
+        )
+      }
+    >
+      Next →
+    </button>
+  </div>
+</div>
     </main>
   );
 }
