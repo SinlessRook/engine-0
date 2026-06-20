@@ -93,7 +93,7 @@ def generate_quiz():
         )
 
         router_response = ai_client.models.generate_content(
-            model=os.getenv("GEMINI_MODEL"),
+            model="gemini-2.5-flash-lite",
             contents=router_prompt,
             config=types.GenerateContentConfig(response_mime_type="application/json")
         )
